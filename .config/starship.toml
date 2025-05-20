@@ -1,3 +1,5 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 add_newline = false
 
 [battery]
@@ -30,6 +32,9 @@ behind = "⇣ ${count}"
 [python]
 symbol = " "
 python_binary = "python3"
+
+[elixir]
+symbol = " "
 
 [gcloud]
 disabled = true

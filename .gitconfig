@@ -3,25 +3,11 @@
   autocrlf = input
   pager = delta
 
-[user]
-  name = Nathan Nguyen
-  email = nathan22x3@gmail.com
-  signingkey = 6837E5AD76E81CC5
-
 [init]
   defaultBranch = main
 
-[commit]
-  gpgsign = true
-
-[tag]
-  gpgsign = true
-
 [hub]
   protocol = ssh
-
-[gpg]
-	program = /usr/local/MacGPG2/bin/gpg2
 
 [alias]
   rc = config --global -e
@@ -47,10 +33,10 @@
   show = delta
 
 [interactive]
-  diffFilter = delta --color-only --features=eldritch --paging=never
+  diffFilter = delta --color-only --features=gruvbox-dark --paging=never
 
 [delta]
-  features = eldritch
+  features = gruvbox-dark
 
 [delta "gruvbox-dark"]
   commit-decoration-style = blue ol
@@ -86,7 +72,13 @@
   minus-style = syntax "#b21f29"
   plus-emph-style = syntax bold "#1fbe72"
   plus-style = syntax "#07884a"
-  syntax-theme = Eldritch
+  syntax-theme = eldritch
+
+[includeIf "gitdir:~/personal/"]
+  path = ~/personal/.gitconfig
+
+[includeIf "gitdir:~/.dotfiles/"]
+  path = ~/personal/.gitconfig
 
 [includeIf "gitdir:~/work/"]
-    path = ~/work/.gitconfig
+  path = ~/work/.gitconfig

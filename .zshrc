@@ -1,8 +1,8 @@
 # general
 export GPG_TTY="$(tty)"
-export TERM="screen-256color"
+export TERM="xterm-256color"
 export VISUAL="$(which lvim)"
-export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|-|cd ..|..|clear)"
+export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|-|cd ..|..|clear|pass|gpg)"
 export PATH="$HOME/.local/bin:$PATH" # local binaries
 
 # pagers
@@ -15,16 +15,6 @@ export STARSHIP_CONFIG="$HOME/.config/starship.toml"
 
 # oh-my-zsh
 export ZSH="$HOME/.oh-my-zsh"
-
-plugins=(
-  asdf
-  nx-completion
-  z
-  zsh-autosuggestions
-  zsh-interactive-cd
-  zsh-syntax-highlighting
-)
-
 source $ZSH/oh-my-zsh.sh
 
 # aliases
@@ -36,10 +26,10 @@ source $ZSH/oh-my-zsh.sh
 # homebrew
 if type brew &>/dev/null
 then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
-  autoload -Uz compinit
-  compinit
+    autoload -Uz compinit
+    compinit
 fi
 
 # fzf
@@ -58,35 +48,52 @@ export NVM_COLORS='cmgRY'
 
 autoload -U add-zsh-hook
 load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
+local node_version="$(nvm version)"
+local nvmrc_path="$(nvm_find_nvmrc)"
 
-  if [ -n "$nvmrc_path" ]; then
+if [ -n "$nvmrc_path" ]; then
     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
 
     if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
+        nvm install
     elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
+        nvm use
     fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
+elif [ "$node_version" != "$(nvm version default)" ]; then
     echo "Reverting to nvm default version"
     nvm use default
-  fi
+fi
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
+# docker
+fpath=(/Users/minami/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
+
+# asdf
+export ASDF_DIR='/usr/local/opt/asdf/libexec'
+. /usr/local/opt/asdf/libexec/asdf.sh
+
+# gcloud
+if [ -f '/Users/minami/Downloads/google-cloud-sdk/path.zsh.inc' ]; then 
+    . '/Users/minami/Downloads/google-cloud-sdk/path.zsh.inc';
+fi
+if [ -f '/Users/minami/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then 
+    . '/Users/minami/Downloads/google-cloud-sdk/completion.zsh.inc';
+fi
 
 # python
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
 if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+    eval "$(pyenv init -)"
 fi
 
 # ruby
@@ -107,8 +114,12 @@ export PATH="/Applications/WebStorm.app/Contents/MacOS:$PATH"
 export ZPLUG_HOME="$HOME/.zplug"
 source $ZPLUG_HOME/init.zsh
 
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "changyuheng/zsh-interactive-cd"
 zplug "changyuheng/fz", defer:1
 zplug "rupa/z", use:z.sh
+zplug "jscutlery/nx-completion"
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "

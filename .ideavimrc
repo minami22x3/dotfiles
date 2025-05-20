@@ -52,6 +52,7 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>r :action RenameElement<cr>
 nnoremap gj :action GotoNextError<cr>
 nnoremap gk :action GotoPreviousError<cr>
+nnoremap <leader>f :action Tool_External Tools_Reformat Elixir Code<cr>
 
 " increase/decrease number
 nnoremap + <C-a>
@@ -92,3 +93,12 @@ nmap <leader>q :tabc<cr>
 
 " sort selected lines
 vnoremap <leader>s :sort<cr>
+
+function! ShuffleSentence()
+    execute "normal! viwy"      " Yank inner sentence
+    execute "normal! viw:s/ /\r/g"  " Split words into lines
+    execute "%!shuf"             " Shuffle lines
+    execute "normal! gJ"         " Join lines back
+endfunction
+
+nnoremap <leader>s :call ShuffleSentence()<CR>

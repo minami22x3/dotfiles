@@ -6,7 +6,7 @@ local opt = vim.opt
 
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "eldritch"
+lvim.colorscheme = "gruvbox-baby"
 lvim.transparent_window = true
 
 opt.termguicolors = true
@@ -53,6 +53,7 @@ lvim.builtin.treesitter.ensure_installed = {
     "tsx",
     "css",
     "rust",
+    "elixir",
     "yaml",
 }
 
@@ -67,7 +68,7 @@ if lualine then
     local inactive_sections = lualine.inactive_sections
 
     -- options
-    options.theme = "eldritch"
+    options.theme = "gruvbox-baby"
     options.icons_enabled = true
     options.component_separators = { left = "", right = "" }
     options.section_separators = { left = "", right = "" }
@@ -117,49 +118,6 @@ lvim.plugins = {
         end
     },
     {
-        "nvim-neorg/neorg",
-        build = ":Neorg sync-parsers",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "folke/zen-mode.nvim",
-        },
-        config = function()
-            require("neorg").setup {
-                load = {
-                    ["core.defaults"] = {},
-                    ["core.dirman"] = {
-                        config = {
-                            workspaces = { notes = "~/notes" },
-                            default_workspace = "notes",
-                        },
-                    },
-                    ["core.keybinds"] = {
-                        config = {
-                            neorg_leader = "<Space>n",
-                            hook = function(keybinds)
-                                local leader = keybinds.leader
-
-                                keybinds.map("norg", "n", "T", ":Neorg toc<cr>")
-                                keybinds.map(
-                                    "norg", "n", leader .. "im", ":Neorg inject-metadata<cr>",
-                                    { desc = "Insert Metadata" }
-                                )
-                            end
-                        },
-                    },
-                    ["core.qol.toc"] = {
-                        config = { close_after_use = true },
-                    },
-                    ["core.concealer"] = {
-                        config = { icon_preset = "diamond" },
-                    },
-                },
-            }
-            vim.wo.foldlevel = 99
-            vim.wo.conceallevel = 2
-        end,
-    },
-    {
         "folke/noice.nvim",
         dependencies = {
             "MunifTanjim/nui.nvim",
@@ -190,34 +148,25 @@ lvim.plugins = {
 
 vim.notify = require("notify")
 
-lvim.builtin.alpha.dashboard.section.header.val = {
-    [[⠀⠀⠀⠀⠀⠀⠀⣠⡤⠶⡄⠀⠀⠀⠀⠀⠀⠀⢠⠶⣦⣀⠀⠀⠀⠀⠀⠀⠀  ]],
-    [[ ⠀⠀⠀⠀⢀⣴⣿⡟⠀⠈⣀⣾⣝⣯⣿⣛⣷⣦⡀⠀⠈⢿⣿⣦⡀⠀⠀⠀⠀ ]],
-    [[ ⠀⠀⠀⣴⣿⣿⣿⡇⠀⢼⣿⣽⣿⢻⣿⣻⣿⣟⣷⡄⠀⢸⣿⣿⣾⣄⠀⠀⠀ ]],
-    [[ ⠀⠀⣞⣿⣿⣿⣿⣷⣤⣸⣟⣿⣿⣻⣯⣿⣿⣿⣿⣀⣴⣿⣿⣿⣿⣯⣆⠀⠀ ]],
-    [[ ⠀⡼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣜⡆⠀ ]],
-    [[ ⢠⣟⣯⣿⣿⣿⣷⢿⣫⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣬⣟⠿⣿⣿⣿⣿⡷⣾⠀ ]],
-    [[ ⢸⣯⣿⣿⡏⠙⡇⣾⣟⣿⡿⢿⣿⣿⣿⣿⣿⢿⣟⡿⣿⠀⡟⠉⢹⣿⣿⢿⡄ ]],
-    [[ ⢸⣯⡿⢿⠀⠀⠱⢈⣿⢿⣿⡿⣏⣿⣿⣿⣿⣿⣿⣿⣿⣀⠃⠀⢸⡿⣿⣿⡇ ]],
-    [[ ⢸⣿⣇⠈⢃⣴⠟⠛⢉⣸⣇⣹⣿⣿⠚⡿⣿⣉⣿⠃⠈⠙⢻⡄⠎⠀⣿⡷⠃ ]],
-    [[ ⠈⡇⣿⠀⠀⠻⣤⠠⣿⠉⢻⡟⢷⣝⣷⠉⣿⢿⡻⣃⢀⢤⢀⡏⠀⢠⡏⡼⠀ ]],
-    [[ ⠀⠘⠘⡅⠀⣔⠚⢀⣉⣻⡾⢡⡾⣻⣧⡾⢃⣈⣳⢧⡘⠤⠞⠁⠀⡼⠁⠀⠀ ]],
-    [[ ⠀⠀⠀⠸⡀⠀⢠⡎⣝⠉⢰⠾⠿⢯⡘⢧⡧⠄⠀⡄⢻⠀⠀⠀⢰⠁⠀⠀⠀ ]],
-    [[ ⠀⠀⠀⠀⠁⠀⠈⢧⣈⠀⠘⢦⠀⣀⠇⣼⠃⠰⣄⣡⠞⠀⠀⠀⠀⠀⠀⠀⠀ ]],
-    [[ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⢤⠼⠁⠀⠀⠳⣤⡼⠀⠀⠀⠀⠀⠀      ]],
-}
+-- lvim.builtin.alpha.dashboard.section.header.val = {
+--     [[⠀⠀⠀⠀⠀⠀⠀⣠⡤⠶⡄⠀⠀⠀⠀⠀⠀⠀⢠⠶⣦⣀⠀⠀⠀⠀⠀⠀⠀  ]],
+--     [[ ⠀⠀⠀⠀⢀⣴⣿⡟⠀⠈⣀⣾⣝⣯⣿⣛⣷⣦⡀⠀⠈⢿⣿⣦⡀⠀⠀⠀⠀ ]],
+--     [[ ⠀⠀⠀⣴⣿⣿⣿⡇⠀⢼⣿⣽⣿⢻⣿⣻⣿⣟⣷⡄⠀⢸⣿⣿⣾⣄⠀⠀⠀ ]],
+--     [[ ⠀⠀⣞⣿⣿⣿⣿⣷⣤⣸⣟⣿⣿⣻⣯⣿⣿⣿⣿⣀⣴⣿⣿⣿⣿⣯⣆⠀⠀ ]],
+--     [[ ⠀⡼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣜⡆⠀ ]],
+--     [[ ⢠⣟⣯⣿⣿⣿⣷⢿⣫⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣬⣟⠿⣿⣿⣿⣿⡷⣾⠀ ]],
+--     [[ ⢸⣯⣿⣿⡏⠙⡇⣾⣟⣿⡿⢿⣿⣿⣿⣿⣿⢿⣟⡿⣿⠀⡟⠉⢹⣿⣿⢿⡄ ]],
+--     [[ ⢸⣯⡿⢿⠀⠀⠱⢈⣿⢿⣿⡿⣏⣿⣿⣿⣿⣿⣿⣿⣿⣀⠃⠀⢸⡿⣿⣿⡇ ]],
+--     [[ ⢸⣿⣇⠈⢃⣴⠟⠛⢉⣸⣇⣹⣿⣿⠚⡿⣿⣉⣿⠃⠈⠙⢻⡄⠎⠀⣿⡷⠃ ]],
+--     [[ ⠈⡇⣿⠀⠀⠻⣤⠠⣿⠉⢻⡟⢷⣝⣷⠉⣿⢿⡻⣃⢀⢤⢀⡏⠀⢠⡏⡼⠀ ]],
+--     [[ ⠀⠘⠘⡅⠀⣔⠚⢀⣉⣻⡾⢡⡾⣻⣧⡾⢃⣈⣳⢧⡘⠤⠞⠁⠀⡼⠁⠀⠀ ]],
+--     [[ ⠀⠀⠀⠸⡀⠀⢠⡎⣝⠉⢰⠾⠿⢯⡘⢧⡧⠄⠀⡄⢻⠀⠀⠀⢰⠁⠀⠀⠀ ]],
+--     [[ ⠀⠀⠀⠀⠁⠀⠈⢧⣈⠀⠘⢦⠀⣀⠇⣼⠃⠰⣄⣡⠞⠀⠀⠀⠀⠀⠀⠀⠀ ]],
+--     [[ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⢤⠼⠁⠀⠀⠳⣤⡼⠀⠀⠀⠀⠀⠀      ]],
+-- }
 
 lvim.builtin.which_key.mappings["<space>"] = {
     name = "Picker",
     c = { ":PickColor<cr>", "Color Picker" },
     i = { ":IconPickerNormal<cr>", "Icon Picker" },
-}
-
-lvim.builtin.which_key.mappings["n"] = {
-    name = "Neorg",
-    i = { name = "Insert" },
-    l = { name = "List" },
-    m = { name = "Mode" },
-    n = { name = "Note" },
-    t = { name = "Todos" },
 }

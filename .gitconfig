@@ -80,5 +80,8 @@
 [includeIf "gitdir:~/.dotfiles/"]
   path = ~/personal/.gitconfig
 
-[includeIf "gitdir:~/work/"]
-  path = ~/work/.gitconfig
+[includeIf "gitdir:~/.password-store/"]
+  path = ~/personal/.gitconfig
+
+[includeIf "gitdir:~/work/norra/"]
+  path = ~/work/norra/.gitconfig

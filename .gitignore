@@ -1,5 +1,15 @@
 # neovim
 /.config/nvim/plugin
 
+# github-copilot
+/.config/github-copilot/ws
+/.config/github-copilot/apps.json
+
+# raycast
+/.config/raycast
+
+# fuck
+/.config/thefuck
+
 # misc
 .DS_Store

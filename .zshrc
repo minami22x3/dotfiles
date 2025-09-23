@@ -41,31 +41,31 @@ bindkey -r '^T'
 bindkey '^F' fzf-file-widget
 
 # nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh" # this loads nvm
-[ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" # this loads nvm bash_completion
-export NVM_COLORS='cmgRY'
-
-autoload -U add-zsh-hook
-load-nvmrc() {
-local node_version="$(nvm version)"
-local nvmrc_path="$(nvm_find_nvmrc)"
-
-if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-        nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-        nvm use
-    fi
-elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh" # this loads nvm
+# [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" # this loads nvm bash_completion
+# export NVM_COLORS='cmgRY'
+#
+# autoload -U add-zsh-hook
+# load-nvmrc() {
+# local node_version="$(nvm version)"
+# local nvmrc_path="$(nvm_find_nvmrc)"
+#
+# if [ -n "$nvmrc_path" ]; then
+#     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+#
+#     if [ "$nvmrc_node_version" = "N/A" ]; then
+#         nvm install
+#     elif [ "$nvmrc_node_version" != "$node_version" ]; then
+#         nvm use
+#     fi
+# elif [ "$node_version" != "$(nvm version default)" ]; then
+#     echo "Reverting to nvm default version"
+#     nvm use default
+# fi
+# }
+# add-zsh-hook chpwd load-nvmrc
+# load-nvmrc
 
 # docker
 fpath=(/Users/minami/.docker/completions $fpath)
@@ -77,8 +77,10 @@ export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
 # asdf
-export ASDF_DIR='/usr/local/opt/asdf/libexec'
-. /usr/local/opt/asdf/libexec/asdf.sh
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
+# rust
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # gcloud
 if [ -f '/Users/minami/Downloads/google-cloud-sdk/path.zsh.inc' ]; then 

@@ -89,6 +89,8 @@ xnoremap <leader>p \"_dP
 " tab
 nmap H :tabp<cr>
 nmap L :tabn<cr>
+nmap >> :tabmove +1<cr>
+nmap << :tabmove -1<cr>
 nmap <leader>q :tabc<cr>
 
 " sort selected lines

@@ -23,3 +23,8 @@ yabai -m mouse_drop_action swap
 
 # turn off tiling by default for all apps
 yabai -m rule --add app=".*" manage=off
+yabai -m rule --add app="^Chrome$" manage=on
+yabai -m rule --add app="^Warp$" manage=on
+yabai -m rule --add app="^Slack$" sticky=on
+yabai -m rule --add app="^Zalo$" sticky=on
+yabai -m rule --add app="^WebStorm$" sticky=on

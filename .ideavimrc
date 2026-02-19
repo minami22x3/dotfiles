@@ -52,7 +52,7 @@ nnoremap <leader>w :w<cr>
 nnoremap <leader>a :action Annotate<cr><Esc>
 nnoremap <leader>r :action RenameElement<cr>
 nnoremap <leader>f :action Tool_Elixir_Format Code<cr>
-nnoremap <leader>t :action Tool_Elixir_Run Test<cr>
+nnoremap <leader>; :action Tool_Elixir_Run Test<cr>
 nnoremap gj :action GotoNextError<cr>
 nnoremap gk :action GotoPreviousError<cr>
 

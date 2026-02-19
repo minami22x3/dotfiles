@@ -2,9 +2,7 @@
 /.config/nvim/plugin
 
 # github-copilot
-/.config/github-copilot/iu
-/.config/github-copilot/ws
-/.config/github-copilot/apps.json
+/.config/github-copilot
 
 # raycast
 /.config/raycast

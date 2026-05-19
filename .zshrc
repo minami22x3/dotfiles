@@ -2,7 +2,7 @@
 export GPG_TTY="$(tty)"
 export TERM="xterm-256color"
 export VISUAL="$(which lvim)"
-export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|-|cd ..|..|clear|pass|gpg)"
+export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|-|cd ..|..|clear|pass|gpg|dotenvx)"
 export PATH="$HOME/.local/bin:$PATH" # local binaries
 
 # pagers
@@ -128,6 +128,7 @@ source $ZPLUG_HOME/init.zsh
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "changyuheng/zsh-interactive-cd"
+zplug "kiurchv/asdf.plugin.zsh", defer:2
 zplug "changyuheng/fz", defer:1
 zplug "rupa/z", use:z.sh
 zplug "jscutlery/nx-completion"

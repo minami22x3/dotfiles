@@ -40,6 +40,9 @@ export FZF_DEFAULT_OPTS='--color=fg:#ebfafa,bg:#282a36,hl:#37f499 --color=fg+:#e
 bindkey -r '^T'
 bindkey '^F' fzf-file-widget
 
+# asdf
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
 # nvm
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh" # this loads nvm
@@ -76,9 +79,6 @@ compinit
 export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
-# asdf
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
@@ -88,14 +88,6 @@ if [ -f '/Users/minami/Downloads/google-cloud-sdk/path.zsh.inc' ]; then
 fi
 if [ -f '/Users/minami/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then 
     . '/Users/minami/Downloads/google-cloud-sdk/completion.zsh.inc';
-fi
-
-# python
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
 fi
 
 # ruby
@@ -117,9 +109,15 @@ export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk@17/include"
 
 # android
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$PATH:$ANDROID_HOME/emulator"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+
+# hermes
+export HERMES_DASHBOARD_TUI=1
+
+# rtk
+export RTK_TELEMETRY_DISABLED=1
 
 # zplug
 export ZPLUG_HOME="$HOME/.zplug"

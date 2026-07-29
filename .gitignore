@@ -1,14 +1,10 @@
-# neovim
-/.config/nvim/plugin
-
-# github-copilot
-/.config/github-copilot
-
-# raycast
-/.config/raycast
-
-# fuck
-/.config/thefuck
+# configs
+.config/nvim/plugin
+.config/github-copilot
+.config/raycast
+.config/thefuck
+.config/mole
+.config/jgit
 
 # misc
 .DS_Store

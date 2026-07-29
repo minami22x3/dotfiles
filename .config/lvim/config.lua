@@ -104,7 +104,7 @@ lvim.plugins = {
     "luisiacc/gruvbox-baby",
     "eldritch-theme/eldritch.nvim",
     "stevearc/dressing.nvim",
-    "brenoprata10/nvim-highlight-colors",
+    -- "brenoprata10/nvim-highlight-colors",
     {
         "ziontee113/color-picker.nvim",
         config = true,
@@ -146,7 +146,7 @@ lvim.plugins = {
     },
 }
 
-vim.notify = require("notify")
+-- vim.notify = require("notify")
 
 -- lvim.builtin.alpha.dashboard.section.header.val = {
 --     [[⠀⠀⠀⠀⠀⠀⠀⣠⡤⠶⡄⠀⠀⠀⠀⠀⠀⠀⢠⠶⣦⣀⠀⠀⠀⠀⠀⠀⠀  ]],
